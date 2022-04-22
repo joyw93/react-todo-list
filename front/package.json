@@ -10,10 +10,13 @@
   "author": "JoYongWon",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.19.5",
     "next": "^9.5.5",
     "prop-types": "^15.8.1",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "eslint": "^8.13.0",
