@@ -3,7 +3,6 @@ import moment from "moment";
 import React, { useState } from "react";
 import styled from "styled-components";
 import AddList from "./AddList";
-import locale from "antd/es/calendar/locale/ko_KR";
 const HeaderBlock = styled.h2`
   margin-top: 30px;
   text-align: center;
@@ -11,7 +10,7 @@ const HeaderBlock = styled.h2`
 
 const CalendarBlock = styled.div``;
 
-const mCalendar = () => {
+const mCalendar = ({ tasks, setDate }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [value, setValue] = useState(moment().format("MM월 DD일"));
   const showModal = () => {
@@ -29,7 +28,19 @@ const mCalendar = () => {
   const onSelect = (value) => {
     //showModal();
     setValue(value.format("MM월 DD일"));
-    //alert(value.format("YYYY-MM-DD"));
+    setDate(value.format("YYYY-MM-DD"));
+  };
+  const getListData = (value) => {};
+
+  const dateCellRender = (value) => {
+    const date = value.format("YYYY-MM-DD");
+    const taskDate = tasks.filter((task) => task.date === date);
+    if(taskDate.length>=1)
+    return <Badge status="success" text={taskDate.length} ></Badge>;
+  };
+
+  const monthCellRender = (value) => {
+    return;
   };
   return (
     <>
@@ -37,7 +48,7 @@ const mCalendar = () => {
         <h2 style={{ color: "#2196F3" }}>{value}</h2>
       </HeaderBlock>
       <CalendarBlock>
-        <Calendar locale={locale} onSelect={onSelect} />
+        <Calendar dateCellRender={dateCellRender} onSelect={onSelect} />
       </CalendarBlock>
       <Modal
         title="새로운 일정을 등록하세요"

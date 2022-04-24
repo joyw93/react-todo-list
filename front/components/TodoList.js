@@ -3,28 +3,7 @@ import { useState } from "react";
 import { DeleteFilled, DeleteOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
-const todos = [
-  {
-    id: 0,
-    content: "프로젝트 생성하기",
-    done: true,
-  },
-  {
-    id: 1,
-    content: "컴포넌트 스타일링하기",
-    done: true,
-  },
-  {
-    id: 2,
-    content: "Context 만들기",
-    done: false,
-  },
-  {
-    id: 3,
-    content: "기능 구현하기",
-    done: false,
-  },
-];
+
 
 const { Meta } = Card;
 
@@ -57,13 +36,12 @@ const HeaderBlock = styled.h2`
   color: #2196f3;
 `;
 
-const TodoList = () => {
-  const [tasks, setTasks] = useState(todos);
+const TodoList = ({ tasks, setTasks, date }) => {
   const onChange = (index, e) => {
     setTasks([...tasks, (tasks[index].done = !tasks[index].done)]);
   };
   const onDelete = (id, e) => {
-    setTasks(tasks.filter(task=>task.id !== id));
+    setTasks(tasks.filter((task) => task.id !== id));
   };
   return (
     <>
@@ -71,7 +49,7 @@ const TodoList = () => {
         <h2 style={{ color: "#2196F3" }}>할 일</h2>
       </HeaderBlock>
       {tasks.map((task, index) =>
-        task.done === false ? (
+        task.done === false && task.date == date ? (
           <Card hoverable className="todo">
             <BoxBlock>
               <Checkbox
@@ -96,7 +74,7 @@ const TodoList = () => {
         <h2 style={{ color: "#2196F3" }}>완료 한 항목</h2>
       </HeaderBlock>
       {tasks.map((task, index) =>
-        task.done === true ? (
+        task.done === true && task.date ==  date  ? (
           <Card hoverable className="todo">
             <BoxBlock>
               <Checkbox
