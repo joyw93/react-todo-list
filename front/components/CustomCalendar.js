@@ -11,6 +11,10 @@ const HeaderBlock = styled.h2`
 const CalendarBlock = styled.div``;
 
 const mCalendar = ({ tasks, setDate }) => {
+  const [clicked, setClicked] = useState({
+    date: "",
+    count: 0,
+  });
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [value, setValue] = useState(moment().format("MM월 DD일"));
   const showModal = () => {
@@ -27,6 +31,12 @@ const mCalendar = ({ tasks, setDate }) => {
 
   const onSelect = (value) => {
     //showModal();
+    if (value.format("YYYY-MM-DD") == clicked.date) {
+      setClicked({ ...clicked, count: 2 });
+    } else {
+      setClicked({ ...clicked, count: 1, date: value.format("YYYY-MM-DD") });
+    }
+    console.log(clicked.count);
     setValue(value.format("MM월 DD일"));
     setDate(value.format("YYYY-MM-DD"));
   };
@@ -35,8 +45,8 @@ const mCalendar = ({ tasks, setDate }) => {
   const dateCellRender = (value) => {
     const date = value.format("YYYY-MM-DD");
     const taskDate = tasks.filter((task) => task.date === date);
-    if(taskDate.length>=1)
-    return <Badge status="success" text={taskDate.length} ></Badge>;
+    if (taskDate.length >= 1)
+      return <Badge status="success" text={taskDate.length}></Badge>;
   };
 
   const monthCellRender = (value) => {

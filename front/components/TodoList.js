@@ -3,8 +3,6 @@ import { useState } from "react";
 import { DeleteFilled, DeleteOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
-
-
 const { Meta } = Card;
 
 const TodoBlock = styled.div`
@@ -38,7 +36,9 @@ const HeaderBlock = styled.h2`
 
 const TodoList = ({ tasks, setTasks, date }) => {
   const onChange = (index, e) => {
-    setTasks([...tasks, (tasks[index].done = !tasks[index].done)]);
+    const _tasks = [...tasks];
+    _tasks[index].done = !_tasks[index].done
+    setTasks(_tasks)
   };
   const onDelete = (id, e) => {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -74,7 +74,7 @@ const TodoList = ({ tasks, setTasks, date }) => {
         <h2 style={{ color: "#2196F3" }}>완료 한 항목</h2>
       </HeaderBlock>
       {tasks.map((task, index) =>
-        task.done === true && task.date ==  date  ? (
+        task.done === true && task.date == date ? (
           <Card hoverable className="todo">
             <BoxBlock>
               <Checkbox
