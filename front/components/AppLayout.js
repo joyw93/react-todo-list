@@ -4,6 +4,7 @@ import Link from "next/link";
 import Statistic from "./Statistic";
 import CustomCalendar from "./CustomCalendar";
 import TodoList from "./TodoList";
+import moment from "moment";
 import { Input, Menu, Row, Col, Anchor } from "antd";
 import { ConfigProvider } from "antd";
 import kor from "antd/lib/locale/ko_KR";
@@ -84,27 +85,47 @@ const todos = [
 
 const AppLayout = ({ children }) => {
   const [tasks, setTasks] = useState(todos);
-  const [date, setDate] = useState("2022-04-27");
- 
+  const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
+  const [month, setMonth] = useState(moment().format("MM"));
+  const [day, setDay] = useState(moment().format("DD"));
 
   return (
     <ConfigProvider locale={kor}>
-      <nav style={{ backgroundColor: "#00BCD4", height: "80px" }}>
-        <div style={{ color: "white", fontSize: "25px", textAlign:"center" }}>{date}</div>
+      <nav style={{ backgroundColor: "#009688", height: "150px" }}>
+        <div style={{ color: "white", fontSize: "30px", textAlign: "center" }}>
+          {month}
+        </div>
+        <div
+          style={{
+            color: "white",
+            fontSize: "60px",
+            textAlign: "center",
+            fontWeight: "bold",
+            marginBottom: "15px",
+          }}
+        >
+          {day}
+        </div>
       </nav>
-      <Row gutter={30}>
-        <Col xs={24} md={6}>
-          <Statistic date={date} tasks={tasks} />
-        </Col>
-        <Col xs={24} md={12}>
-          <CustomCalendar setTasks={setTasks} tasks={tasks} setDate={setDate} />
-        </Col>
-        <Col xs={24} md={6}>
-          <Anchor>
+      <div style={{ backgroundColor: "#F5F5F5" ,height:"100vh"}}>
+        <Row gutter={30}>
+          <Col xs={24} md={6}>
+            <Statistic date={date} tasks={tasks} />
+          </Col>
+          <Col xs={24} md={12}>
+            <CustomCalendar
+              setMonth={setMonth}
+              setDay={setDay}
+              setTasks={setTasks}
+              tasks={tasks}
+              setDate={setDate}
+            />
+          </Col>
+          <Col xs={24} md={6}>
             <TodoList date={date} tasks={tasks} setTasks={setTasks} />
-          </Anchor>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </ConfigProvider>
   );
 };

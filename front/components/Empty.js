@@ -1,7 +1,7 @@
 import { Empty } from "antd";
 
 const EmptyPage = () => {
-  return <Empty></Empty>;
+  return <Empty description={false}></Empty>;
 };
 
 export default EmptyPage;
