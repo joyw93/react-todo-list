@@ -1,52 +1,42 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, Radio } from 'antd';
+import React, { useState, useEffect } from "react";
+import { Form, Input, Button, Radio } from "antd";
 
-const AddList = () => {
+const AddList = ({ title, setTitle, setContent }) => {
   const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState('vertical');
+  const [formLayout, setFormLayout] = useState("vertical");
+  const [tempTitle, setTempTitle] = useState("");
 
-  const onFormLayoutChange = ({ layout }) => {
-    setFormLayout(layout);
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
   };
 
-  const formItemLayout =
-    formLayout === 'horizontal'
-      ? {
-          labelCol: {
-            span: 4,
-          },
-          wrapperCol: {
-            span: 14,
-          },
-        }
-      : null;
-  const buttonItemLayout =
-    formLayout === 'horizontal'
-      ? {
-          wrapperCol: {
-            span: 14,
-            offset: 4,
-          },
-        }
-      : null;
+  const onChangeContent = (e) => {
+    setContent(e.target.value);
+  };
+
   return (
     <Form
-      {...formItemLayout}
       layout={formLayout}
       form={form}
       initialValues={{
         layout: formLayout,
       }}
-      onValuesChange={onFormLayoutChange}
     >
-      <Form.Item label="제목">
-        <Input placeholder="제목을 입력하세요" />
+      <Form.Item label="내용">
+        <Input
+          placeholder="내용을 입력하세요"
+          onChange={onChangeTitle}
+          value={title}
+        />
       </Form.Item>
       <Form.Item label="메모">
-        <Input.TextArea  placeholder="상세 내용을 입력하세요" />
+        <Input.TextArea
+          placeholder="상세 내용을 입력하세요"
+          onChange={onChangeContent}
+        />
       </Form.Item>
     </Form>
   );
 };
 
-export default () => <AddList />;
+export default AddList;

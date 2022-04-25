@@ -1,5 +1,6 @@
 import { Checkbox, Card } from "antd";
 import { useState } from "react";
+import Empty from "./Empty";
 import { DeleteFilled, DeleteOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
@@ -35,31 +36,43 @@ const HeaderBlock = styled.h2`
 `;
 
 const TodoList = ({ tasks, setTasks, date }) => {
-  const onChange = (index, e) => {
-    const _tasks = [...tasks];
-    _tasks[index].done = !_tasks[index].done
-    setTasks(_tasks)
+  const onChange = (task, e) => {
+    setTasks(
+      tasks.map((item) =>
+        item.id === task.id ? { ...item, done: !item.done } : item
+      )
+    );
   };
   const onDelete = (id, e) => {
     setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const onClickCard = (task, e) => {
+    console.log(task);
   };
   return (
     <>
       <HeaderBlock>
         <h2 style={{ color: "#2196F3" }}>할 일</h2>
       </HeaderBlock>
-      {tasks.map((task, index) =>
-        task.done === false && task.date == date ? (
-          <Card hoverable className="todo">
+      {tasks.map((task, index) => {
+        return task.done === false && task.date == date ? (
+          <Card
+            hoverable
+            className="todo"
+            onClick={(e) => {
+              onClickCard(task, e);
+            }}
+          >
             <BoxBlock>
               <Checkbox
                 checked={false}
                 onChange={(e) => {
-                  onChange(index, e);
+                  onChange(task, e);
                 }}
               />
             </BoxBlock>
-            <ContentBlock key={index}>{task.content}</ContentBlock>
+            <ContentBlock key={index}>{task.title}</ContentBlock>
             <IconBlock>
               <DeleteOutlined
                 onClick={(e) => {
@@ -68,23 +81,29 @@ const TodoList = ({ tasks, setTasks, date }) => {
               />
             </IconBlock>
           </Card>
-        ) : null
-      )}
+        ) : null;
+      })}
       <HeaderBlock>
         <h2 style={{ color: "#2196F3" }}>완료 한 항목</h2>
       </HeaderBlock>
       {tasks.map((task, index) =>
         task.done === true && task.date == date ? (
-          <Card hoverable className="todo">
+          <Card
+            hoverable
+            className="todo"
+            onClick={(e) => {
+              onClickCard(task, e);
+            }}
+          >
             <BoxBlock>
               <Checkbox
                 checked={true}
                 onChange={(e) => {
-                  onChange(index, e);
+                  onChange(task, e);
                 }}
               />
             </BoxBlock>
-            <ContentBlock key={index}>{task.content}</ContentBlock>
+            <ContentBlock key={index}>{task.title}</ContentBlock>
             <IconBlock>
               <DeleteOutlined
                 onClick={(e) => {

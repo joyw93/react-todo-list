@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Link from "next/link";
+import Statistic from "./Statistic";
 import CustomCalendar from "./CustomCalendar";
 import TodoList from "./TodoList";
 import { Input, Menu, Row, Col, Anchor } from "antd";
@@ -12,75 +13,95 @@ const todos = [
   {
     id: 0,
     date: "2022-04-24",
+    title: "컴포넌트 스타일링하기",
     content: "프로젝트 생성하기",
     done: true,
   },
   {
     id: 1,
     date: "2022-04-24",
+    title: "프로젝트 생성하기",
     content: "컴포넌트 스타일링하기",
     done: true,
   },
   {
     id: 2,
     date: "2022-04-24",
+    title: "Context 만들기",
     content: "Context 만들기",
     done: false,
   },
   {
     id: 3,
     date: "2022-04-24",
+    title: "기능 구현하기",
     content: "기능 구현하기",
     done: false,
   },
-  ,
   {
     id: 4,
     date: "2022-04-25",
+    title: "뷰 공부하기",
     content: "기능 구현하기",
     done: true,
   },
-  ,
   {
     id: 5,
     date: "2022-04-25",
+    title: "밥먹기",
     content: "밥먹기",
     done: false,
+  },
+  {
+    id: 6,
+    date: "2022-04-06",
+    title: "뷰 공부하기",
+    content: "밥먹기",
+    done: true,
+  },
+  {
+    id: 7,
+    date: "2022-04-13",
+    title: "리액트 공부하기",
+    content: "밥먹기",
+    done: true,
+  },
+  {
+    id: 8,
+    date: "2022-04-11",
+    title: "리덕스 공부하기",
+    content: "밥먹기",
+    done: false,
+  },
+  {
+    id: 9,
+    date: "2022-04-24",
+    title: "프로젝트 하기",
+    content: "컴포넌트 스타일링하기",
+    done: true,
   },
 ];
 
 const AppLayout = ({ children }) => {
   const [tasks, setTasks] = useState(todos);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState("2022-04-27");
+ 
+
   return (
     <ConfigProvider locale={kor}>
-      <Menu mode="horizontal">
-        <Menu.Item>
-          <Link href="/">
-            <a>노드버드</a>
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link href="/profile">
-            <a>프로필</a>
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link href="/signup">
-            <a>회원가입</a>
-          </Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Input.Search enterButton style={{ verticalAlign: "middle" }} />
-        </Menu.Item>
-      </Menu>
+      <nav style={{ backgroundColor: "#00BCD4", height: "80px" }}>
+        <div style={{ color: "white", fontSize: "25px", textAlign:"center" }}>{date}</div>
+      </nav>
       <Row gutter={30}>
-        <Col xs={24} md={16}>
-          <CustomCalendar tasks={tasks} setDate={setDate} />
+        <Col xs={24} md={6}>
+          <Statistic date={date} tasks={tasks} />
         </Col>
-        <Col xs={24} md={8}>
+        <Col xs={24} md={12}>
+          <CustomCalendar setTasks={setTasks} tasks={tasks} setDate={setDate} />
+        </Col>
+        <Col xs={24} md={6}>
           <Anchor>
-            <TodoList date={date} tasks={tasks} setTasks={setTasks}/>
+            <TodoList date={date} tasks={tasks} setTasks={setTasks} />
           </Anchor>
         </Col>
       </Row>
