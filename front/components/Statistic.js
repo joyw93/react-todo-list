@@ -26,8 +26,8 @@ const HeaderBlock3 = styled.h3`
 
 const GraphBlock = styled.div`
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
 const ProgressBlock = styled.div``;
@@ -41,13 +41,24 @@ const mStatistic = ({ tasks, date }) => {
 
   return (
     <>
-      <Card style={{ marginTop: "50px", marginLeft: "40px", height: "100%" }}>
+      <Card
+        style={{
+          marginTop: "40px",
+          marginLeft: "40px",
+          height: "100%",
+          boxShadow: "0 5px 18px -7px rgba(0,0,0,1)",
+          borderRadius: "20px",
+          display: "flex",
+        }}
+      >
         {/* <HeaderBlock2>
         <h2 style={{ color: "#2196F3", fontWeight: "bold" }}>리포트</h2>
       </HeaderBlock2> */}
 
         <HeaderBlock3>
-          <h3 style={{ fontSize: "17px", fontWeight: "bold" }}>
+          <h3
+            style={{ fontSize: "20px", fontWeight: "bold", color: "#26A69A" }}
+          >
             일일계획 달성률
           </h3>
         </HeaderBlock3>
@@ -99,8 +110,8 @@ const mStatistic = ({ tasks, date }) => {
 
         <div
           style={{
-            marginBottom: "60px",
-            marginTop: "60px",
+            marginBottom: "30px",
+            marginTop: "30px",
             marginLeft: "30px",
             textAlign: "center",
           }}

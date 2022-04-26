@@ -86,7 +86,7 @@ const mCalendar = ({ setMonth, setDay, tasks, setTasks, setDate }) => {
   };
   return (
     <>
-      <Card style={{ marginTop: "50px", height: "100%" }}>
+      <Card style={{ marginTop: "40px", height: "100%", boxShadow: "0 5px 18px -7px rgba(0,0,0,1)", borderRadius:"20px" }}>
         {/* <HeaderBlock>
         <h2 style={{ color: "#2196F3" }}>{value}</h2>
       </HeaderBlock> */}
@@ -94,7 +94,7 @@ const mCalendar = ({ setMonth, setDay, tasks, setTasks, setDate }) => {
           <Calendar dateCellRender={dateCellRender} onSelect={onSelect} />
         </CalendarBlock>
         <Modal
-          title="새로운 일정을 등록하세요"
+          title="새로운 계획을 추가하세요"
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}

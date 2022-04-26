@@ -91,14 +91,22 @@ const AppLayout = ({ children }) => {
 
   return (
     <ConfigProvider locale={kor}>
-      <nav style={{ backgroundColor: "#009688", height: "150px" }}>
-        <div style={{ color: "white", fontSize: "30px", textAlign: "center" }}>
+      <nav style={{ backgroundColor: "#009688", height: "100px" }}>
+        <div
+          style={{
+            color: "white",
+            fontSize: "20px",
+            textAlign: "center",
+            marginRight: "60px",
+          }}
+        >
           {month}
         </div>
         <div
           style={{
             color: "white",
-            fontSize: "60px",
+            marginRight: "60px",
+            fontSize: "40px",
             textAlign: "center",
             fontWeight: "bold",
             marginBottom: "15px",
@@ -107,12 +115,12 @@ const AppLayout = ({ children }) => {
           {day}
         </div>
       </nav>
-      <div style={{ backgroundColor: "#F5F5F5" ,height:"100vh"}}>
+      <div style={{ backgroundColor: "#EEEEEE", height: "100vh" }}>
         <Row gutter={30}>
           <Col xs={24} md={6}>
             <Statistic date={date} tasks={tasks} />
           </Col>
-          <Col xs={24} md={12}>
+          <Col xs={24} md={10}>
             <CustomCalendar
               setMonth={setMonth}
               setDay={setDay}
@@ -121,7 +129,7 @@ const AppLayout = ({ children }) => {
               setDate={setDate}
             />
           </Col>
-          <Col xs={24} md={6}>
+          <Col xs={24} md={8}>
             <TodoList date={date} tasks={tasks} setTasks={setTasks} />
           </Col>
         </Row>

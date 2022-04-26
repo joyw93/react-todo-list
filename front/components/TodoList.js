@@ -76,7 +76,7 @@ const TodoList = ({ tasks, setTasks, date }) => {
   };
   return (
     <>
-      <Card style={{ marginTop: "50px", marginRight: "40px", height: "100%" }}>
+      <Card style={{ marginTop: "40px", marginRight: "40px", height: "100%",boxShadow: "0 5px 18px -7px rgba(0,0,0,1)", borderRadius:"20px" }}>
         <HeaderBlock>
           <h2 style={{ color: "#26A69A" }}>Todo</h2>
         </HeaderBlock>
