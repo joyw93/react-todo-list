@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@next/bundle-analyzer": "^12.1.5",
     "antd": "^4.19.5",
     "next": "^9.5.5",
     "pm2": "^5.2.0",
