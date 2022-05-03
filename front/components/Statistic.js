@@ -148,13 +148,7 @@ const mStatistic = ({ tasks, date }) => {
           <Col md={12}>
             <Statistic title="누적 완료 계획" value={donesTotal.length} />
           </Col>
-          <Col md={12}>
-            <Progress
-              type="circle"
-              percent={75}
-              format={(percent) => `D+${percent}`}
-            />
-          </Col>
+          
         </Row>
       </Card>
     </>
