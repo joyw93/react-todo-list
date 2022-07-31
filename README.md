@@ -1,4 +1,4 @@
-# :pushpin: react-Todolist
+# :pushpin: react-todo-list
 >리액트로 만든 나만의 Todo-list
 >
 
